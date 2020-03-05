@@ -1,0 +1,30 @@
+<div *ngIf="hero">
+  <h2>{{hero.name | uppercase}} Details</h2>
+  <div><span>id: </span>{{hero.id}}</div>
+  <div>
+
+      <label for="heroname">Nom</label>
+      <input [(ngModel)]="hero.name" placeholder="nom" id="heroname" autocomplete="false"/>
+
+      <label for="attaque">Attaque</label>
+      <input [(ngModel)]="hero.attaque" [max]="getMaxStat(hero.attaque)" type="number" placeholder="attaque" id="attaque" autocomplete="false">
+
+      <label for="esquive">Esquive</label>
+      <input [(ngModel)]="hero.esquive" [max]="getMaxStat(hero.esquive)" type="number" placeholder="esquive" id="esquive" autocomplete="false">
+
+      <label for="degats">Degats</label>
+      <input [(ngModel)]="hero.degats" [max]="getMaxStat(hero.degats)" type="number" placeholder="degats" id="degats" autocomplete="false">
+
+      <label for="pv">PV</label>
+      <input [(ngModel)]="hero.pv" [max]="getMaxStat(hero.pv)" type="number" placeholder="pv" id="pv" autocomplete="false">
+
+      <label>Points restants</label>
+      <input [value]="getPointsRestants()" disabled>
+
+      <div *ngIf="isHeroValid()">
+        <input type="submit" value="Valider">
+      </div>
+
+  </div>
+  <button (click)="goBack()">Gotta go back !</button>
+</div>

@@ -1,11 +1,8 @@
-import {Weapon} from './weapon';
-
-export class Hero {
+export class Weapon {
   id: number;
   name: string;
   attaque: number;
   esquive: number;
   degats: number;
   pv: number;
-  arme: Weapon;
 }
