@@ -1,1 +1,32 @@
-<p>weapon-detail works!</p>
+<div *ngIf="weapon">
+  <h2>{{weapon.name}} - Details</h2>
+
+  <div>
+
+    <label for="weaponname">Nom</label>
+    <input [(ngModel)]="weapon.name" id="weaponname" placeholder="nom">
+
+    <label for="attaque">Attaque</label>
+    <input [(ngModel)]="weapon.attaque" id="attaque" placeholder="attaque" type="number">
+
+    <label for="esquive">Esquive</label>
+    <input [(ngModel)]="weapon.esquive" id="esquive" placeholder="attaque" type="number">
+
+    <label for="degats">Degats</label>
+    <input [(ngModel)]="weapon.degats" id="degats" placeholder="attaque" type="number">
+
+    <label for="pv">PV</label>
+    <input [(ngModel)]="weapon.pv" id="pv" placeholder="attaque" type="number">
+
+    <label>Points restants</label>
+    <input [value]="getPointsRestants()" disabled>
+
+    <div *ngIf="isWeaponValid()">
+      <input type="submit" value="Valider">
+    </div>
+
+  </div>
+
+  <button (click)="goBack()">Go back !</button>
+
+</div>

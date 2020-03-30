@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Weapon} from '../data/weapon';
-import { Location } from '@angular/common';
+import {Location} from '@angular/common';
 import {ActivatedRoute} from '@angular/router';
 import {WeaponService} from '../weapon.service';
 
@@ -41,12 +41,8 @@ export class WeaponDetailComponent implements OnInit {
   }
 
   isWeaponValid():boolean{
-    return (this.getPointsRestants()>=0
-      && this.weapon.degats > 0
-      && this.weapon.esquive > 0
-      && this.weapon.attaque > 0
-      && this.weapon.pv > 0
-      && this.weapon.name.trim() != "");
+    return (this.getPointsRestants() == 0
+      && this.weapon.name.trim() != '');
   }
 
 }
