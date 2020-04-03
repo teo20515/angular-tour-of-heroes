@@ -23,11 +23,21 @@ button {
   cursor: pointer;
   cursor: hand;
 }
+
 button:hover {
   background-color: #cfd8dc;
 }
+
 button:disabled {
   background-color: #eee;
   color: #ccc;
   cursor: auto;
+}
+
+select {
+  display: block;
+  height: 2em;
+  font-size: 1em;
+  padding-left: 0.4em;
+  margin-bottom: 1em;
 }

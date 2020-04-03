@@ -1,7 +1,8 @@
 import {Weapon} from './weapon';
+import {Serializable} from "../serializable";
 
-export class Hero {
-  id: number;
+export class Hero extends Serializable {
+  id: string;
   name: string;
   attaque: number;
   esquive: number;
