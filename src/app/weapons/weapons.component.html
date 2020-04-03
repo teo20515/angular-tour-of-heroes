@@ -2,7 +2,9 @@
 <ul class="heroes">
   <li *ngFor="let weapon of weapons">
     <a routerLink="/weapondetail/{{weapon.id}}">
-      <span class="badge">{{weapon.id}}</span>{{weapon.name}}
+      <span class="badge">{{weapons.indexOf(weapon) + 1}}</span>{{weapon.name}}
     </a>
   </li>
 </ul>
+
+<button routerLink="/weapondetail" type="button">Ajouter une arme</button>

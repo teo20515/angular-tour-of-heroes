@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
-import { Hero } from '../data/hero';
-import { HeroService } from '../hero.service';
-import { AngularFirestore } from '@angular/fire/firestore';
+import {Hero} from '../data/hero';
+import {HeroService} from '../services/hero.service';
+import {AngularFirestore} from '@angular/fire/firestore';
 
 @Component({
   selector: 'app-heroes',

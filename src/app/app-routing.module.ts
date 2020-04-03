@@ -10,7 +10,9 @@ const routes: Routes = [
   {path: '', redirectTo: '/dashboard', pathMatch: 'full'},
   {path: 'dashboard', component: DashboardComponent},
   {path: 'herodetail/:id', component: HeroDetailComponent},
+  {path: 'herodetail', component: HeroDetailComponent},
   {path: 'weapondetail/:id', component: WeaponDetailComponent},
+  {path: 'weapondetail', component: WeaponDetailComponent},
   {path: 'heroes', component: HeroesComponent},
   {path: 'weapons', component: WeaponsComponent}
 ];

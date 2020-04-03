@@ -1,10 +1,10 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {Location} from '@angular/common';
 import {Hero} from '../data/hero';
-import {HeroService} from '../hero.service';
+import {HeroService} from '../services/hero.service';
 import {Weapon} from "../data/weapon";
-import {WeaponService} from "../weapon.service";
+import {WeaponService} from "../services/weapon.service";
 
 @Component({
   selector: 'app-hero-detail',
@@ -21,12 +21,23 @@ export class HeroDetailComponent implements OnInit {
     private route: ActivatedRoute,
     private heroService: HeroService,
     private weaponService: WeaponService,
-    private location: Location
+    private location: Location,
+    private router: Router
   ) {
   }
 
   ngOnInit(): void {
-    this.initHero();
+    if (this.route.snapshot.paramMap.get('id')) {
+      this.initHero();
+    } else {
+      this.hero = new Hero();
+      this.hero.attaque = 0;
+      this.hero.degats = 0;
+      this.hero.esquive = 0;
+      this.hero.pv = 0;
+      this.hero.name = "Nouveau Héro";
+    }
+
     this.initWeapons();
   }
 
@@ -61,8 +72,28 @@ export class HeroDetailComponent implements OnInit {
       && this.hero.name.trim() != "");
   }
 
-  updateHero(hero: Hero) {
-    this.heroService.updateHero(hero);
+  heroExists() {
+    return this.hero.id !== "" && this.hero.id !== undefined && this.hero.id !== null;
+  }
+
+  updateHero() {
+    this.heroService.updateHero(this.hero);
+    this.redirectToList();
+  }
+
+  createHero() {
+    this.heroService.addHero(this.hero);
+    this.redirectToList();
+  }
+
+  clearWeapon() {
+    this.hero.arme = null;
+    // @ts-ignore
+    document.getElementById("weapon").selectedIndex = -1;
+  }
+
+  redirectToList() {
+    this.router.navigate(['/heroes']);
   }
 
 }

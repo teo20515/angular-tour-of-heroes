@@ -21,8 +21,12 @@
     <label>Points restants</label>
     <input [value]="getPointsRestants()" disabled>
 
-    <div *ngIf="isWeaponValid()">
-      <input type="submit" value="Valider">
+    <div *ngIf="isWeaponValid() && weaponExists()">
+      <input (click)="updateWeapon()" type="button" value="Valider">
+    </div>
+
+    <div *ngIf="isWeaponValid() && !weaponExists()">
+      <input (click)="createWeapon()" type="button" value="Créer">
     </div>
 
   </div>

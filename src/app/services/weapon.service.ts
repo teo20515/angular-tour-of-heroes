@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
-import {MessageService} from './message.service';
+import {MessageService} from '../message.service';
 import {Observable} from 'rxjs';
-import {Weapon} from './data/weapon';
+import {Weapon} from '../data/weapon';
 import {AngularFirestore, AngularFirestoreDocument} from "@angular/fire/firestore";
 import {map} from "rxjs/operators";
 

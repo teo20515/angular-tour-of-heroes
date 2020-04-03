@@ -1,13 +1,13 @@
 <div *ngIf="hero">
   <h2>{{hero.name | uppercase}} - Details</h2>
-  <div><span>id: </span>{{hero.id}}</div>
   <div>
 
-      <label for="heroname">Nom</label>
-      <input [(ngModel)]="hero.name" placeholder="nom" id="heroname" autocomplete="false"/>
+    <label for="heroname">Nom</label>
+    <input [(ngModel)]="hero.name" autocomplete="false" id="heroname" placeholder="nom"/>
 
-      <label for="attaque">Attaque</label>
-      <input [(ngModel)]="hero.attaque" [max]="getMaxStat(hero.attaque)" type="number" placeholder="attaque" id="attaque" autocomplete="false">
+    <label for="attaque">Attaque</label>
+    <input [(ngModel)]="hero.attaque" [max]="getMaxStat(hero.attaque)" autocomplete="false" id="attaque"
+           placeholder="attaque" type="number">
 
     <label for="esquive">Esquive</label>
     <input [(ngModel)]="hero.esquive" [max]="getMaxStat(hero.esquive)" type="number" placeholder="esquive" id="esquive"
@@ -25,12 +25,17 @@
     <select [(ngModel)]="hero.arme" id="weapon">
       <option *ngFor="let weapon of weapons" [value]="weapon.id">{{weapon.name}}</option>
     </select>
+    <button (click)="clearWeapon()" *ngIf="hero.arme" class="clearWeapon">Retirer l'arme</button>
 
     <label>Points restants</label>
     <input [value]="getPointsRestants()" disabled>
 
-    <div *ngIf="isHeroValid()">
-      <input (click)="updateHero(hero)" type="button" value="Valider">
+    <div *ngIf="isHeroValid() && heroExists()">
+      <input (click)="updateHero()" type="button" value="Valider">
+    </div>
+
+    <div *ngIf="isHeroValid() && !heroExists()">
+      <input (click)="createHero()" type="button" value="Créer">
     </div>
 
   </div>
