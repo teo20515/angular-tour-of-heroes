@@ -15,6 +15,8 @@ import {WeaponDetailComponent} from './weapon-detail/weapon-detail.component';
 import {AngularFireModule} from '@angular/fire';
 import {environment} from '../environments/environment';
 import {AngularFirestore, AngularFirestoreModule} from '@angular/fire/firestore';
+
+import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
 import {AngularFireAnalyticsModule} from '@angular/fire/analytics';
 import {AngularFireAuthModule} from '@angular/fire/auth';
 import {AngularFireStorageModule} from '@angular/fire/storage';
@@ -23,6 +25,7 @@ import {AngularFireStorageModule} from '@angular/fire/storage';
 @NgModule({
   imports: [
     BrowserModule,
+    NgbModule,
     FormsModule,
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebase),

@@ -1,7 +1,7 @@
 <div *ngIf="weapon">
   <h2>{{weapon.name}} - Details</h2>
 
-  <div>
+  <div class="main-content">
 
     <label for="weaponname">Nom</label>
     <input [(ngModel)]="weapon.name" id="weaponname" placeholder="nom">
@@ -22,15 +22,15 @@
     <input [value]="getPointsRestants()" disabled>
 
     <div *ngIf="isWeaponValid() && weaponExists()">
-      <input (click)="updateWeapon()" type="button" value="Valider">
+      <button (click)="updateWeapon()" class="btn btn-primary" type="button">Valider</button>
     </div>
 
     <div *ngIf="isWeaponValid() && !weaponExists()">
-      <input (click)="createWeapon()" type="button" value="Créer">
+      <button (click)="createWeapon()" class="btn btn-primary" type="button">Créer</button>
     </div>
 
   </div>
 
-  <button (click)="goBack()">Go back !</button>
+  <button (click)="goBack()" class="btn btn-secondary">Go back !</button>
 
 </div>

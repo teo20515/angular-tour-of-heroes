@@ -8,5 +8,5 @@ export class Hero extends Serializable {
   esquive: number;
   degats: number;
   pv: number;
-  arme: Weapon;
+  weaponId: string;
 }

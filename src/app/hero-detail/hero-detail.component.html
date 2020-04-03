@@ -1,6 +1,6 @@
 <div *ngIf="hero">
   <h2>{{hero.name | uppercase}} - Details</h2>
-  <div>
+  <div class="main-content">
 
     <label for="heroname">Nom</label>
     <input [(ngModel)]="hero.name" autocomplete="false" id="heroname" placeholder="nom"/>
@@ -22,22 +22,22 @@
            autocomplete="false">
 
     <label for="weapon">Arme:</label>
-    <select [(ngModel)]="hero.arme" id="weapon">
+    <select (change)="updateStats()" [(ngModel)]="hero.weaponId" id="weapon">
       <option *ngFor="let weapon of weapons" [value]="weapon.id">{{weapon.name}}</option>
     </select>
-    <button (click)="clearWeapon()" *ngIf="hero.arme" class="clearWeapon">Retirer l'arme</button>
+    <button (click)="clearWeapon()" *ngIf="hero.weaponId" class="clearWeapon">Retirer l'arme</button>
 
     <label>Points restants</label>
     <input [value]="getPointsRestants()" disabled>
 
     <div *ngIf="isHeroValid() && heroExists()">
-      <input (click)="updateHero()" type="button" value="Valider">
+      <button (click)="updateHero()" class="btn btn-primary" type="button">Valider</button>
     </div>
 
     <div *ngIf="isHeroValid() && !heroExists()">
-      <input (click)="createHero()" type="button" value="Créer">
+      <button (click)="createHero()" class="btn btn-primary" type="button">Créer</button>
     </div>
 
   </div>
-  <button (click)="goBack()">Gotta go back !</button>
+  <button (click)="goBack()" class="btn btn-secondary">Gotta go back !</button>
 </div>

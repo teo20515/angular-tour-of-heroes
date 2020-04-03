@@ -5,6 +5,8 @@ import {Hero} from '../data/hero';
 import {HeroService} from '../services/hero.service';
 import {Weapon} from "../data/weapon";
 import {WeaponService} from "../services/weapon.service";
+import apply = Reflect.apply;
+import {getExpressionScope} from "@angular/compiler-cli";
 
 @Component({
   selector: 'app-hero-detail',
@@ -16,6 +18,7 @@ export class HeroDetailComponent implements OnInit {
 
   hero: Hero;
   weapons: Weapon[];
+  oldWeapon: Weapon;
 
   constructor(
     private route: ActivatedRoute,
@@ -86,14 +89,43 @@ export class HeroDetailComponent implements OnInit {
     this.redirectToList();
   }
 
+  hasWeapon() {
+    return this.hero.weaponId !== null && this.hero.weaponId !== undefined;
+  }
+
   clearWeapon() {
-    this.hero.arme = null;
+    this.hero.weaponId = null;
+    this.resetWeaponStats();
+    this.oldWeapon = null;
     // @ts-ignore
     document.getElementById("weapon").selectedIndex = -1;
   }
 
   redirectToList() {
     this.router.navigate(['/heroes']);
+  }
+
+  updateStats() {
+    this.resetWeaponStats();
+    if (this.hasWeapon()) {
+      let weapon = this.weapons.find(weapon => this.hero.weaponId.localeCompare(weapon.id) == 0);
+
+      this.hero.pv += weapon.pv;
+      this.hero.esquive += weapon.esquive;
+      this.hero.degats += weapon.degats;
+      this.hero.attaque += weapon.attaque;
+
+      this.oldWeapon = weapon;
+    }
+  }
+
+  resetWeaponStats() {
+    if (this.oldWeapon !== null && this.oldWeapon !== undefined) {
+      this.hero.pv -= this.oldWeapon.pv;
+      this.hero.esquive -= this.oldWeapon.esquive;
+      this.hero.degats -= this.oldWeapon.degats;
+      this.hero.attaque -= this.oldWeapon.attaque;
+    }
   }
 
 }
